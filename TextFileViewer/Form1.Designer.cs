@@ -75,7 +75,7 @@
             // 
             // ofdOpenFile
             // 
-            this.ofdOpenFile.Filter = "Text Files|*.txt |All Files|*.*";
+            this.ofdOpenFile.Filter = "Text Files|*.txt|All Files|*.*";
             this.ofdOpenFile.SupportMultiDottedExtensions = true;
             // 
             // MainForm

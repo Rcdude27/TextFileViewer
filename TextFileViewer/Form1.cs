@@ -34,7 +34,7 @@ namespace TextFileViewer {
                 // Read the data in the file, convert to text, and display in
                 // the rich text box.
                 // Set up bugger to hold data read from file.
-                const int iBufferSize = 1;
+                const int iBufferSize = 4096;
                 byte[] byBuffer = new byte[iBufferSize];
                 //Clear any text that is currently appearing in the rich text box
                 rtbText.Clear();
@@ -42,20 +42,11 @@ namespace TextFileViewer {
                 bHasBOM = false;
                 int iBytesRead = fsFile.Read(byBuffer, 0, iBufferSize);
                 // Inital read to start eh process. Check for UTF-8 BOM at beggining of the file.
-                if (iBytesRead > 0 && byBuffer[0] == 0xEF)
+                if (iBytesRead > 0 && byBuffer[0] == 0xEF && byBuffer[1] == 0xBB && byBuffer[2] == 0xBF)
                 {
-                    iBytesRead = fsFile.Read(byBuffer, 0, iBufferSize);
-                    if (iBytesRead > 0 && byBuffer[0] == 0xBB)
-                    {
-                        iBytesRead = fsFile.Read(byBuffer, 0, iBufferSize);
-                        if (iBytesRead > 0 && byBuffer[0] == 0xBF)
-                        {
-                            // There is a UTF-8 BOM at the beginning. Keep track of this, tne read first byte of text to start loop.
-                            bHasBOM = true;
-                            iBytesRead = fsFile.Read(byBuffer, 0, iBufferSize);
-
-                        }
-                    }
+                    // There is a UTF-8 BOM at the beginning. Keep track of this, tne read first byte of text to start loop.
+                    bHasBOM = true;
+                    iBytesRead = fsFile.Read(byBuffer, 3, iBufferSize);
                 }
                 while (iBytesRead > 0) 
                 {
