@@ -54,14 +54,14 @@
             // miOpen
             // 
             this.miOpen.Name = "miOpen";
-            this.miOpen.Size = new System.Drawing.Size(180, 22);
+            this.miOpen.Size = new System.Drawing.Size(103, 22);
             this.miOpen.Text = "Open";
             this.miOpen.Click += new System.EventHandler(this.miOpen_Click);
             // 
             // miQuit
             // 
             this.miQuit.Name = "miQuit";
-            this.miQuit.Size = new System.Drawing.Size(180, 22);
+            this.miQuit.Size = new System.Drawing.Size(103, 22);
             this.miQuit.Text = "Quit";
             this.miQuit.Click += new System.EventHandler(this.miQuit_Click);
             // 
@@ -75,6 +75,7 @@
             // 
             // ofdOpenFile
             // 
+            this.ofdOpenFile.Filter = "Text Files|*.txt |All Files|*.*";
             this.ofdOpenFile.SupportMultiDottedExtensions = true;
             // 
             // MainForm
